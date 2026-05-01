@@ -1,1 +1,1 @@
-import gui.py
+import gui

@@ -1,2 +1,3 @@
 from gui import Test
-afk = gui.test()
+afk = Test()
+afk.print()

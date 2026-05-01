@@ -1,6 +1,7 @@
 import tkinter
-class test:
+class Test:
     def __init__(self):
         pass
-    def print():
-        print('hello')
+
+    def print(self):
+        print("hello")

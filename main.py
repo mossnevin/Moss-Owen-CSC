@@ -1,2 +1,2 @@
-from gui import test
+from gui import Test
 afk = gui.test()

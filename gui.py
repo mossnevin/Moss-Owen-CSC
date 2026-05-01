@@ -5,3 +5,6 @@ class Test:
 
     def print(self):
         print("hello")
+
+afjo = Test()
+afjo.print()

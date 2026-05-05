@@ -1,1 +1,3 @@
-print("hello")
+import pygame
+pygame.init()
+screen = pygame.display.set_mode((500, 400))

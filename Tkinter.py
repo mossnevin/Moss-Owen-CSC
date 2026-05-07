@@ -166,6 +166,6 @@ title_label.place(x=5, y=1)
 
 
 clear()
-inventory_page()
+home_page()
 
 root.mainloop()

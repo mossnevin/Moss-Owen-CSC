@@ -3,7 +3,6 @@ pygame.init()
 
 screen = pygame.display.set_mode((900, 900), pygame.RESIZABLE)
 pygame.display.set_caption("Route Maker")
-clock = pygame.time.Clock()
 
 run = True
 while run:
@@ -19,5 +18,4 @@ while run:
     # redraw your content here
 
     pygame.display.flip()
-    clock.tick(60)
     

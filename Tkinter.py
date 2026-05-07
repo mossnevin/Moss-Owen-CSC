@@ -1,6 +1,7 @@
 import tkinter as tk
 import json
 import os
+# import route_maker
 
 def clear():
     os.system("cls")
@@ -33,19 +34,20 @@ root.title("Climbing App")
 root.geometry("1080x720")
 
 
+
 top_bar = tk.Frame(root, bg="slateblue3")
 top_bar.pack(fill="x")
 
 centre_frame = tk.Frame(top_bar, bg="slateblue3")
 centre_frame.pack()
 
-home_button = tk.Button(centre_frame, text="Home", font=("Arial", 15), command=home, bg="slateblue3", activeforeground="white", activebackground="blue")
+home_button = tk.Button(centre_frame, text="Home", font=("Arial", 15), command=home, bg="slateblue3", activeforeground="white", activebackground="slateblue4")
 home_button.pack(side="left", padx=1)
 
-page2_button = tk.Button(centre_frame, text="Page2", font=("Arial", 15), bg="slateblue3", activeforeground="white", activebackground="blue")
+page2_button = tk.Button(centre_frame, text="Page2", font=("Arial", 15), bg="slateblue3", activeforeground="white", activebackground="slateblue4")
 page2_button.pack(side="left", padx=1)
 
-page3_button = tk.Button(centre_frame, text="Page3", font=("Arial", 15), bg="slateblue3", activeforeground="white", activebackground="blue")
+page3_button = tk.Button(centre_frame, text="Page3", font=("Arial", 15), bg="slateblue3", activeforeground="white", activebackground="slateblue4")
 page3_button.pack(side="left", padx=1)
  
 content_frame = tk.Frame(root)

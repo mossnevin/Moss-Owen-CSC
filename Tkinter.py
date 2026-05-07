@@ -26,6 +26,11 @@ def home():
     main_text = tk.Label(content_frame, font=("Arial", 15), text="words, words, words", wraplength=600)
     main_text.pack()
 
+def inventory_page():
+    clear_frame()
+
+    title_label.config(text="Hold Inventory")
+
 
 
 
@@ -44,8 +49,8 @@ centre_frame.pack()
 home_button = tk.Button(centre_frame, text="Home", font=("Arial", 15), command=home, bg="slateblue3", activeforeground="white", activebackground="slateblue4")
 home_button.pack(side="left", padx=1)
 
-page2_button = tk.Button(centre_frame, text="Page2", font=("Arial", 15), bg="slateblue3", activeforeground="white", activebackground="slateblue4")
-page2_button.pack(side="left", padx=1)
+inventory_button = tk.Button(centre_frame, text="Inventory", font=("Arial", 15), command=inventory_page, bg="slateblue3", activeforeground="white", activebackground="slateblue4")
+inventory_button.pack(side="left", padx=1)
 
 page3_button = tk.Button(centre_frame, text="Page3", font=("Arial", 15), bg="slateblue3", activeforeground="white", activebackground="slateblue4")
 page3_button.pack(side="left", padx=1)

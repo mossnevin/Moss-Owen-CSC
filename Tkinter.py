@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 import json
 import os
 import subprocess
@@ -50,13 +51,15 @@ def inventory_page():
             json.dump(inventory, f, indent=4)
 
     def add_hold():
+        name = name_entry.get()
         type = type_entry.get()
         colour = colour_entry.get()
         size = size_entry.get()
 
         if type:
             hold = {
-                "name": type,
+                "name": name,
+                "type": type,
                 "colour": colour,
                 "size": size
             }
@@ -70,24 +73,46 @@ def inventory_page():
     def update_inventory_list():
         listbox.delete(0, tk.END)
         for hold in inventory:
-            listbox.insert(tk.END, hold)
+            listbox.insert(tk.END, f"{hold['name']} | {hold['type']} | {hold['colour']} | {hold['size']}")
 
-    tk.Label(content_frame, text="Type:").pack()
-    type_entry = tk.Entry(content_frame)
-    type_entry.pack()
+    def clear_inventory():
+        inventory.clear()
+        save_inventory(inventory)
+        update_inventory_list()
 
-    tk.Label(content_frame, text="Colour:").pack()
-    colour_entry = tk.Entry(content_frame)
-    colour_entry.pack()
 
-    tk.Label(content_frame, text="Size:").pack()
-    size_entry = tk.Entry(content_frame)
-    size_entry.pack()
+    input_frame = tk.Frame(content_frame)
+    input_frame.pack(pady=10)
 
-    tk.Button(content_frame, text="Add Hold", command=add_hold).pack()
 
-    listbox = tk.Listbox(content_frame)
-    listbox.pack(fill="x", padx=10)
+    # NAME
+    tk.Label(input_frame, text="Name:").grid(row=0, column=0, padx=10, sticky="w")
+    name_entry = tk.Entry(input_frame, width=23)
+    name_entry.grid(row=1, column=0, padx=10)
+
+    # TYPE
+    tk.Label(input_frame, text="Type:").grid(row=2, column=0, padx=10, sticky="w")
+    type_entry = ttk.Combobox(input_frame, values=["Jug", "Crimp", "Sloper", "Pinch", "Pocket"], state="readonly")
+    type_entry.grid(row=3, column=0, padx=10)
+
+    # COLOUR
+    tk.Label(input_frame, text="Colour:").grid(row=0, column=1, padx=(10, 0), sticky="w")
+    colour_entry = ttk.Combobox(input_frame, values=["Red", "Blue", "Green", "Yellow", "Purple", "Orange", "Black"], state="readonly")
+    colour_entry.grid(row=1, column=1, padx=10)
+
+    # SIZE
+    tk.Label(input_frame, text="Size:").grid(row=2, column=1, padx=(10, 0), sticky="w")
+    size_entry = ttk.Combobox(input_frame, values=["Tiny", "Small", "Medium", "Large"], state="readonly")
+    size_entry.grid(row=3, column=1, padx=10)
+
+    tk.Button(input_frame, text="Add Hold", command=add_hold, bg="green").grid(row=2, column=2, padx=10, sticky="w")
+
+    tk.Button(input_frame, text="Clear Inventory", command=clear_inventory, bg="red").grid(row=3, column=2, padx=10, sticky="e")
+
+    listbox = tk.Listbox(content_frame, width=80)
+    listbox.pack()
+
+    
     
     
     update_inventory_list()
@@ -141,6 +166,6 @@ title_label.place(x=5, y=1)
 
 
 clear()
-home_page()
+inventory_page()
 
 root.mainloop()

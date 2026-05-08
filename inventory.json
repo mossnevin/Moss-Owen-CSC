@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "name": "m",
+        "type": "Pocket",
+        "colour": "Black",
+        "size": "Medium"
+    }
+]

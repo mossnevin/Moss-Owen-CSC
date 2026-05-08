@@ -33,7 +33,7 @@ def inventory_page():
     clear_frame()
     title_label.config(text="Hold Inventory")
 
-    
+    mode = tk.StringVar(value="modify")
 
     def load_inventory():
         if os.path.exists("inventory.json"):
@@ -52,11 +52,11 @@ def inventory_page():
 
     def update_mode(*args):
         if mode.get() == "search":
-            add_button.grid_remove()
-            clear_button.grid_remove()
-        else:
-            add_button.grid()
-            clear_button.grid()
+            add_hold_button.grid_remove()
+            clear_inventory_button.grid_remove()
+        elif mode.get() == "modify":
+            add_hold_button.grid()
+            clear_inventory_button.grid()
 
     def add_hold():
         name = name_entry.get()
@@ -93,9 +93,7 @@ def inventory_page():
     input_frame.pack(pady=10)
 
     # MODIFY / SEARCH
-    mode = tk.StringVar()
-    mode.set("modify")
-    mode.trace("w", update_mode)
+    
     tk.Button(input_frame, text="Modify Mode", command=lambda: mode.set("modify")).grid(row=1, column=0, padx=10, sticky="e")
     tk.Button(input_frame, text="Search Mode", command=lambda: mode.set("search")).grid(row=2, column=0, padx=10, sticky="e")
 
@@ -119,14 +117,16 @@ def inventory_page():
     size_entry = ttk.Combobox(input_frame, values=["Tiny", "Small", "Medium", "Large"], state="readonly")
     size_entry.grid(row=3, column=2, padx=10)
 
-    tk.Button(input_frame, text="Add Hold", command=add_hold, bg="green3").grid(row=2, column=3, padx=10, sticky="w")
+    add_hold_button = tk.Button(input_frame, text="Add Hold", command=add_hold, bg="green3")
+    add_hold_button.grid(row=2, column=3, padx=10, sticky="w")
 
-    tk.Button(input_frame, text="Clear Inventory", command=clear_inventory, bg="red2").grid(row=3, column=3, padx=10, sticky="e")
+    clear_inventory_button = tk.Button(input_frame, text="Clear Inventory", command=clear_inventory, bg="red2")
+    clear_inventory_button.grid(row=3, column=3, padx=10, sticky="e")
 
     listbox = tk.Listbox(content_frame, width=80)
     listbox.pack()
 
-    
+    mode.trace_add("write", update_mode)
     
     
     update_inventory_list()

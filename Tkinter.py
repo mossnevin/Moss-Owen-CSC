@@ -54,9 +54,15 @@ def inventory_page():
         if mode.get() == "search":
             add_hold_button.grid_remove()
             clear_inventory_button.grid_remove()
+            listbox.pack_forget()
+            search_button.grid(row=3, column=3, padx=10, sticky="w")
+            search_results_box.pack()
         elif mode.get() == "modify":
-            add_hold_button.grid()
-            clear_inventory_button.grid()
+            search_button.grid_remove()
+            search_results_box.pack_forget()
+            add_hold_button.grid(row=2, column=3, padx=10, sticky="w")
+            clear_inventory_button.grid(row=3, column=3, padx=10, sticky="e")
+            listbox.pack()
 
     def add_hold():
         name = name_entry.get()
@@ -117,14 +123,24 @@ def inventory_page():
     size_entry = ttk.Combobox(input_frame, values=["Tiny", "Small", "Medium", "Large"], state="readonly")
     size_entry.grid(row=3, column=2, padx=10)
 
+    # ADD HOLD
     add_hold_button = tk.Button(input_frame, text="Add Hold", command=add_hold, bg="green3")
     add_hold_button.grid(row=2, column=3, padx=10, sticky="w")
 
+    # CLEAR INVENTORY
     clear_inventory_button = tk.Button(input_frame, text="Clear Inventory", command=clear_inventory, bg="red2")
     clear_inventory_button.grid(row=3, column=3, padx=10, sticky="e")
 
     listbox = tk.Listbox(content_frame, width=80)
     listbox.pack()
+
+    # SEARCH
+    search_button = tk.Button(input_frame, text="Search", bg="green3")
+
+    # SEARCH RESULTS BOX
+    search_results_box = tk.Listbox(content_frame, width=80)
+
+
 
     mode.trace_add("write", update_mode)
     

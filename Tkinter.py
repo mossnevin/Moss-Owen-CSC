@@ -55,13 +55,15 @@ def inventory_page():
             add_hold_button.grid_remove()
             clear_inventory_button.grid_remove()
             listbox.pack_forget()
-            search_button.grid(row=3, column=3, padx=10, sticky="w")
+            search_button.grid(row=2, column=3, padx=10, sticky="w")
+            clear_search_button.grid(row=3, column=3, padx=10, sticky="w")
             search_results_box.pack()
         elif mode.get() == "modify":
             search_button.grid_remove()
+            clear_search_button.grid_remove()
             search_results_box.pack_forget()
             add_hold_button.grid(row=2, column=3, padx=10, sticky="w")
-            clear_inventory_button.grid(row=3, column=3, padx=10, sticky="e")
+            clear_inventory_button.grid(row=3, column=3, padx=10, sticky="w")
             listbox.pack()
 
     def add_hold():
@@ -89,11 +91,33 @@ def inventory_page():
         for hold in inventory:
             listbox.insert(tk.END, f"{hold['name']} | {hold['type']} | {hold['colour']} | {hold['size']}")
 
-    def clear_inventory():
-        inventory.clear()
-        save_inventory(inventory)
-        update_inventory_list()
+    def clear_inventory_entry():
+        name_entry.delete(0, tk.END)
+        type_entry.set('')
+        colour_entry.set('')
+        size_entry.set('')
 
+    def search_inventory():
+        search_results_box.delete(0, tk.END)
+        search_name = name_entry.get().lower()
+        search_type = type_entry.get().lower()
+        search_colour = colour_entry.get().lower()
+        search_size = size_entry.get().lower()
+
+        for hold in inventory:
+            if ((not search_name or search_name in hold['name'].lower()) and
+                (not search_type or search_type == hold['type'].lower()) and
+                (not search_colour or search_colour == hold['colour'].lower()) and
+                (not search_size or search_size == hold['size'].lower())
+                ):
+                search_results_box.insert(tk.END, f"{hold['name']} | {hold['type']} | {hold['colour']} | {hold['size']}")
+
+    def clear_search():
+        name_entry.delete(0, tk.END)
+        type_entry.set('')
+        colour_entry.set('')
+        size_entry.set('')
+        search_results_box.delete(0, tk.END)
 
     input_frame = tk.Frame(content_frame)
     input_frame.pack(pady=10)
@@ -128,14 +152,18 @@ def inventory_page():
     add_hold_button.grid(row=2, column=3, padx=10, sticky="w")
 
     # CLEAR INVENTORY
-    clear_inventory_button = tk.Button(input_frame, text="Clear Inventory", command=clear_inventory, bg="red2")
-    clear_inventory_button.grid(row=3, column=3, padx=10, sticky="e")
+    clear_inventory_button = tk.Button(input_frame, text="Clear", command=clear_inventory_entry, bg="red2")
+    clear_inventory_button.grid(row=3, column=3, padx=10, sticky="w")
 
     listbox = tk.Listbox(content_frame, width=80)
     listbox.pack()
 
     # SEARCH
-    search_button = tk.Button(input_frame, text="Search", bg="green3")
+    search_button = tk.Button(input_frame, text="Search", bg="green3", command=search_inventory)
+
+    # CLEAR SEARCH
+    clear_search_button = tk.Button(input_frame, text="Clear", bg="red2", command=clear_search)
+
 
     # SEARCH RESULTS BOX
     search_results_box = tk.Listbox(content_frame, width=80)

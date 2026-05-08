@@ -1,23 +1,52 @@
-import pygame
-pygame.init()
 
-screen = pygame.display.set_mode((900, 900), pygame.RESIZABLE)
-pygame.display.set_caption("Route Maker")
-clock = pygame.time.Clock()
+import pygame as py
+py.init()
+
+screen = py.display.set_mode((900, 900), py.RESIZABLE)
+py.display.set_caption("Route Maker")
+
+class Grid:
+    def __init__(self, x, y, size=(10, 10)):
+        self.x = x
+        self.y = y
+        self.size = size
+
+    # Update grid cell positions
+    def update(self, width = py.display.get_window_size()[0], height = py.display.get_window_size()[1]):
+        self.width = width
+        self.height = height
+        self.gapx = self.width // self.size[0]
+        self.gapy = self.height // self.size[1]
+        self.grid = []
+        for w in range(self.size[0]):
+            for h in range(self.size[1]):  
+                self.grid.append((self.x + w * self.gapx, self.y + h * self.gapy))
+
+
+
 
 run = True
+grid = Grid(0, 0, (20, 10))
+
 while run:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+    for event in py.event.get():
+        if event.type == py.QUIT:
             run = False
-        elif event.type == pygame.VIDEORESIZE:
-            screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
-        elif event.type == pygame.WINDOWRESIZED:
-            screen = pygame.display.set_mode((event.x, event.y), pygame.RESIZABLE)
+        elif event.type == py.VIDEORESIZE:
+            screen = py.display.set_mode(event.size, py.RESIZABLE)
+        elif event.type == py.WINDOWRESIZED:
+            try:
+                screen = py.display.set_mode((event.w, event.h), py.RESIZABLE)
+            except AttributeError:
+                screen = py.display.set_mode((event.x, event.y), py.RESIZABLE)
 
-    screen.fill((0, 0, 0))
+    screen.fill((255, 255, 255))
+    width, height = screen.get_size()
+    grid.update(width, height)
+
+    for cell in grid.grid:
+        py.draw.circle(screen, (0, 0, 0), cell, 2)
+
     # redraw your content here
+    py.display.flip()
 
-    pygame.display.flip()
-    clock.tick(60)
-    

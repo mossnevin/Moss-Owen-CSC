@@ -16,9 +16,11 @@ class Grid:
         self.width = width
         self.height = height
         
-        self.gap = min(self.width // self.size[0], self.height // self.size[1])
-        centrex = (self.width - (self.size[0] * self.gap)) // 2
-        centrey = (self.height - (self.size[1] * self.gap)) // 2
+        gapx = self.width // self.size[0]
+        gapy = self.height // self.size[1]
+        self.gap = min(gapx, gapy)
+        centrex = (self.width - (self.size[0] * gapx)) // 2
+        centrey = (self.height - (self.size[1] * gapy)) // 2
         print(centrex, centrey)
         self.x = centrex
         self.y = centrey

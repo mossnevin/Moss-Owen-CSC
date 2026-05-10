@@ -11,15 +11,21 @@ class Grid:
         self.size = size
 
     # Update grid cell positions
-    def update(self, width = py.display.get_window_size()[0], height = py.display.get_window_size()[1]):
+    def update(self):
+        width, height = py.display.get_window_size()
         self.width = width
         self.height = height
-        self.gapx = self.width // self.size[0]
-        self.gapy = self.height // self.size[1]
+        
+        self.gap = min(self.width // self.size[0], self.height // self.size[1])
+        centrex = (self.width - (self.size[0] * self.gap)) // 2
+        centrey = (self.height - (self.size[1] * self.gap)) // 2
+        print(centrex, centrey)
+        self.x = centrex
+        self.y = centrey
         self.grid = []
         for w in range(self.size[0]):
             for h in range(self.size[1]):  
-                self.grid.append((self.x + w * self.gapx, self.y + h * self.gapy))
+                self.grid.append((self.x + w * self.gap, self.y + h * self.gap))
 
 
 
@@ -31,8 +37,6 @@ while run:
             run = False
         elif event.type == py.VIDEORESIZE:
             screen = py.display.set_mode((event.w, event.h), py.RESIZABLE)
-        elif event.type == py.WINDOWRESIZED:
-            screen = py.display.set_mode((event.x, event.y), py.RESIZABLE)
 
     screen.fill((0, 0, 0))
     grid = Grid(0, 0, (20, 10))
@@ -42,7 +46,7 @@ while run:
         py.draw.circle(screen, (255, 255, 255), cell, 2)
     
 
-    print(grid.grid)
+    #print(grid.grid)
     
     # redraw your content here
 

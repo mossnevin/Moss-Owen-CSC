@@ -4,5 +4,11 @@
         "type": "Pocket",
         "colour": "Black",
         "size": "Medium"
+    },
+    {
+        "name": "small crimp",
+        "type": "Crimp",
+        "colour": "Blue",
+        "size": "Small"
     }
 ]

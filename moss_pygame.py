@@ -3,8 +3,10 @@ import os
 
 py.init()
 
+mouse_x, mouse_y = py.mouse.get_pos()
 mousedown = False
 wall_spots = []
+clock = py.time.Clock()
 
 
 
@@ -23,7 +25,7 @@ def interactable_wall_1():
     
 
 
-    for n in range(HEIGHT - 100):
+    for n in range(screen.get_height() - 100):
         if n % y_hole_distance == 0:
             does_offset += 1
             for i in range(screen.get_width()):
@@ -39,22 +41,37 @@ def interactable_wall_1():
 
     run = True
     while run:
+
+        mousedown = False
+        dragging = False
+
         for event in py.event.get():
             if event.type == py.QUIT:
                 run = False
+            elif event.type == py.MOUSEBUTTONDOWN:
+                mousedown = True
+            elif event.type == py.MOUSEBUTTONUP:
+                mousedown = False
 
         screen.fill("black")
-
-        
-
-        
 
         for i in wall_spots:
             py.draw.circle(screen, "red", i, 2)
 
         
+        circle_pos = (screen.get_width() / 2, screen.get_height() - 80)
+        circle_radius = 20
+
+        py.draw.circle(screen, "green", circle_pos, circle_radius)
+
+
+        if py.mouse.get_pos() in 
+            dragging = True
+
+        
 
         py.display.flip()
+        clock.tick(60)
 
 
 def main_menu():

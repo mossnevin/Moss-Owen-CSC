@@ -14,12 +14,16 @@ def clear():
     os.system("cls")
 
 def interactable_wall_1():
-    does_offset = 1
-
+    
     WIDTH, HEIGHT = 1080, 720
     screen = py.display.set_mode((WIDTH, HEIGHT), py.RESIZABLE)
     py.display.set_caption("Interactable_Wall_1()")
 
+
+    does_offset = 1
+    mousedown = False
+    circle_pos = (screen.get_width() / 2, screen.get_height() - 80)
+    circle_radius = 20
     y_hole_distance = 40
     x_hole_distance = y_hole_distance * 2
     
@@ -41,15 +45,17 @@ def interactable_wall_1():
 
     run = True
     while run:
-
-        mousedown = False
-        dragging = False
+        
+        
+        
+        mouse_x, mouse_y = py.mouse.get_pos()
 
         for event in py.event.get():
             if event.type == py.QUIT:
                 run = False
             elif event.type == py.MOUSEBUTTONDOWN:
                 mousedown = True
+                circle_pos = (mouse_x, mouse_y)
             elif event.type == py.MOUSEBUTTONUP:
                 mousedown = False
 
@@ -59,14 +65,12 @@ def interactable_wall_1():
             py.draw.circle(screen, "red", i, 2)
 
         
-        circle_pos = (screen.get_width() / 2, screen.get_height() - 80)
-        circle_radius = 20
+        
 
         py.draw.circle(screen, "green", circle_pos, circle_radius)
 
-
-        if py.mouse.get_pos() in 
-            dragging = True
+        
+        
 
         
 
@@ -81,6 +85,7 @@ def main_menu():
 
     run = True
     while run:
+        
 
         mouse_x, mouse_y = py.mouse.get_pos()
         mousedown = False
@@ -91,6 +96,7 @@ def main_menu():
                 run = False
             elif event.type == py.MOUSEBUTTONDOWN:
                 mousedown = True
+                
             elif event.type == py.MOUSEBUTTONUP:
                 mousedown = False
         if mouse_y > spacing and mouse_y < (screen.get_height() - spacing) and mousedown:
@@ -104,7 +110,7 @@ def main_menu():
                 run = False
                 print("interactable_wall_3()")
         
-
+        
 
 
         screen.fill("grey30")

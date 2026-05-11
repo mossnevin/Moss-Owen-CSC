@@ -3,13 +3,39 @@ import os
 
 py.init()
 
+mousedown = False
+wall_spots = []
+
+
+
 def clear():
     os.system("cls")
 
 def interactable_wall_1():
+    does_offset = 1
+
     WIDTH, HEIGHT = 1080, 720
     screen = py.display.set_mode((WIDTH, HEIGHT), py.RESIZABLE)
     py.display.set_caption("Interactable_Wall_1()")
+
+    y_hole_distance = 40
+    x_hole_distance = y_hole_distance * 2
+    
+
+
+    for n in range(HEIGHT - 100):
+        if n % y_hole_distance == 0:
+            does_offset += 1
+            for i in range(screen.get_width()):
+                if i % x_hole_distance == 0:
+                    if does_offset % 2 == 0:
+                        offset = x_hole_distance - x_hole_distance / 4
+                    else:
+                        offset = x_hole_distance / 4
+                    wall_spots.append((i + offset, n + y_hole_distance / 2))
+
+
+
 
     run = True
     while run:
@@ -19,9 +45,12 @@ def interactable_wall_1():
 
         screen.fill("black")
 
-        circle_size = 2
+        
 
-        py.draw.circle(screen, "red", (screen.get_width() // 2, screen.get_height() // 2), circle_size)
+        
+
+        for i in wall_spots:
+            py.draw.circle(screen, "red", i, 2)
 
         
 
@@ -37,25 +66,25 @@ def main_menu():
     while run:
 
         mouse_x, mouse_y = py.mouse.get_pos()
-        mouse_down = False
+        mousedown = False
         spacing = 20
 
         for event in py.event.get():
             if event.type == py.QUIT:
                 run = False
             elif event.type == py.MOUSEBUTTONDOWN:
-                mouse_down = True
+                mousedown = True
             elif event.type == py.MOUSEBUTTONUP:
-                mouse_down = False
-        if mouse_y > spacing and mouse_y < (screen.get_height() - spacing) and mouse_down:
+                mousedown = False
+        if mouse_y > spacing and mouse_y < (screen.get_height() - spacing) and mousedown:
             if mouse_x > spacing and mouse_x < ((screen.get_width() - (spacing * 4)) / 3) + spacing:
-                running = False
+                run = False
                 interactable_wall_1()
             elif mouse_x > ((screen.get_width() - (spacing * 4)) / 3) + (spacing * 2) and mouse_x < (screen.get_width() - (spacing * 4)) / 3 * 2 + (spacing * 2):
-                running = False
+                run = False
                 print("interactable_wall_2()")
             elif mouse_x > ((screen.get_width() - (spacing * 4)) / 3) * 2 + (spacing * 3) and mouse_x < ((screen.get_width() - (spacing * 4)) / 3) * 3 + (spacing * 3):
-                running = False
+                run = False
                 print("interactable_wall_3()")
         
 

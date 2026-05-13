@@ -2,7 +2,13 @@
 import pygame as py
 py.init()
 
-screen = py.display.set_mode((900, 900), py.RESIZABLE)
+WIDTH, HEIGHT = 800, 600
+
+screen = py.display.set_mode(
+    (WIDTH, HEIGHT),
+    py.RESIZABLE
+)
+
 py.display.set_caption("Route Maker")
 
 class Grid:
@@ -32,13 +38,10 @@ while run:
     for event in py.event.get():
         if event.type == py.QUIT:
             run = False
+
         elif event.type == py.VIDEORESIZE:
-            screen = py.display.set_mode(event.size, py.RESIZABLE)
-        elif event.type == py.WINDOWRESIZED:
-            try:
-                screen = py.display.set_mode((event.w, event.h), py.RESIZABLE)
-            except AttributeError:
-                screen = py.display.set_mode((event.x, event.y), py.RESIZABLE)
+
+            WIDTH, HEIGHT = event.size
 
     screen.fill((255, 255, 255))
     width, height = screen.get_size()

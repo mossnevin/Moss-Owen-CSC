@@ -37,6 +37,8 @@ grid = Grid(0, 0, (20, 10))
 while run:
     for event in py.event.get():
         if event.type == py.QUIT:
+    for event in py.event.get():
+        if event.type == py.QUIT:
             run = False
 
         elif event.type == py.VIDEORESIZE:

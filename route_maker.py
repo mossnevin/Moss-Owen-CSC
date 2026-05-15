@@ -4,12 +4,17 @@ import pygame as py
 py.init()
 
 # Set up the display
-WIDTH, HEIGHT = 800, 600
+width, height = 800, 600
 screen = py.display.set_mode(
-    (WIDTH, HEIGHT),
+    (width, height),
     py.RESIZABLE
 )
 py.display.set_caption("Route Maker")
+
+
+holds_panel_width = 20
+holds_panel_height = 20
+holds_panel = py.Surface((holds_panel_width, holds_panel_height))
 
 # Class to create a grid of points on the screen
 class Grid:
@@ -29,36 +34,14 @@ class Grid:
         self.gap = (min(self.gapx, self.gapy))
         
         # Adjust the position of the grid
-        self.x = (self.width - self.gap * self.size[0]) // 2
-        self.y = (self.height - self.gap * self.size[1]) // 2
+        self.x = (self.width - self.gap * (self.size[0] - 1)) // 2
+        self.y = (self.height - self.gap * (self.size[1] - 1)) // 2
 
         # Add the postions of the grid cells to the grid list
         self.grid = []
         for w in range(self.size[0]):
             for h in range(self.size[1]):  
                 self.grid.append((self.x + w * self.gap, self.y + h * self.gap))
-
-# # # # # # # # # # # # # # # # # # # #
-# # # # # # # # # # # # # # # # # # # #
-# # # # # # # # # # # # # # # # # # # #
-# # # # # # # # # # # # # # # # # # # #
-# # # # # # # # # # # # # # # # # # # #
-# # # # # # # # # # # # # # # # # # # #
-# # # # # # # # # # # # # # # # # # # #
-# # # # # # # # # # # # # # # # # # # #
-# # # # # # # # # # # # # # # # # # # #
-# # # # # # # # # # # # # # # # # # # #
-
-
-
-                if w == 10:
-                    # print(h, w)
-                    # print(h * w + w - 1)
-                    #print(self.grid[h * w + w])
-                    pass
-
-
-
 
 grid = Grid(0, 0, (20, 10)) # Create a grid with 20 columns and 10 rows
 
@@ -74,27 +57,30 @@ while run:
             run = False
 
         elif event.type == py.VIDEORESIZE:
+            width, height = event.size
+ 
+    width, height = py.display.get_window_size()
 
-            WIDTH, HEIGHT = event.size
+    # -----------Panel-------------
+
+    # Panel surface
+    holds_panel_width = width
+    holds_panel_height = 50
+    holds_panel = py.Surface((holds_panel_width, holds_panel_height))
+    holds_panel.fill((200, 200, 200)) # Fill the panel with a color
+
 
     screen.fill((255, 255, 255))
-    width, height = screen.get_size()
+    
     grid.update(width, height)
 
-
-
+    
 
     for cell in grid.grid:
         py.draw.circle(screen, (0, 0, 0), cell, 2)
-    py.draw.circle(screen, (255, 0, 0), (0, 0), 5)
-    py.draw.circle(screen, (255, 0, 0), (800, 0), 5)
 
     
-   
-                
+    print(height)
+    screen.blit(holds_panel, (0, height - holds_panel_height)) # Draw the panel on the screen
 
-    
-
-    
     py.display.flip()
-

@@ -10,5 +10,17 @@
         "type": "Crimp",
         "colour": "Blue",
         "size": "Small"
+    },
+    {
+        "name": "",
+        "type": "Crimp",
+        "colour": "Blue",
+        "size": "Medium"
+    },
+    {
+        "name": "",
+        "type": "Crimp",
+        "colour": "Blue",
+        "size": "Medium"
     }
 ]

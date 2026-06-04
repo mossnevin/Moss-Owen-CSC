@@ -29,16 +29,16 @@ def interactable_wall_1():
     
 
 
-    for n in range(screen.get_height() - 100):
-        if n % y_hole_distance == 0:
-            does_offset += 1
-            for i in range(screen.get_width()):
-                if i % x_hole_distance == 0:
-                    if does_offset % 2 == 0:
-                        offset = x_hole_distance - x_hole_distance / 4
-                    else:
-                        offset = x_hole_distance / 4
-                    wall_spots.append((i + offset, n + y_hole_distance / 2))
+    # for n in range(screen.get_height() - 100):
+    #     if n % y_hole_distance == 0:
+    #         does_offset += 1
+    #         for i in range(screen.get_width()):
+    #             if i % x_hole_distance == 0:
+    #                 if does_offset % 2 == 0:
+    #                     offset = x_hole_distance - x_hole_distance / 4
+    #                 else:
+    #                     offset = x_hole_distance / 4
+    #                 wall_spots.append((i + offset, n + y_hole_distance / 2))
 
 
 

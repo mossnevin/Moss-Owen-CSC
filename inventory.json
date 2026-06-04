@@ -1,20 +1,8 @@
 [
     {
-        "name": "Red crimp",
-        "type": "Crimp",
-        "colour": "Red",
-        "size": "Small"
-    },
-    {
         "name": "",
         "type": "Crimp",
-        "colour": "Blue",
-        "size": "Medium"
-    },
-    {
-        "name": "",
-        "type": "Crimp",
-        "colour": "Blue",
+        "colour": "Yellow",
         "size": "Medium"
     }
 ]

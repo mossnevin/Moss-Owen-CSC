@@ -1,14 +1,74 @@
 [
     {
-        "name": "",
+        "name": "Hold_1",
+        "type": "Sloper",
+        "colour": "Green",
+        "size": "Small"
+    },
+    {
+        "name": "afa",
         "type": "Crimp",
-        "colour": "Yellow",
+        "colour": "Purple",
+        "size": "Large"
+    },
+    {
+        "name": "afa",
+        "type": "Crimp",
+        "colour": "Black",
+        "size": "Large"
+    },
+    {
+        "name": "afa",
+        "type": "Crimp",
+        "colour": "Green",
+        "size": "Large"
+    },
+    {
+        "name": "",
+        "type": "Sloper",
+        "colour": "Black",
         "size": "Medium"
     },
     {
-        "name": "afff",
+        "name": "",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Medium"
+    },
+    {
+        "name": "",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Medium"
+    },
+    {
+        "name": "",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Medium"
+    },
+    {
+        "name": "",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Medium"
+    },
+    {
+        "name": "",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Medium"
+    },
+    {
+        "name": "",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Medium"
+    },
+    {
+        "name": "",
         "type": "Crimp",
-        "colour": "Yellow",
-        "size": "Small"
+        "colour": "Green",
+        "size": "Tiny"
     }
 ]

@@ -65,6 +65,7 @@ colour_properies = {
     "Green": "#31b431",
     "Yellow": "#ffff00",
     "Purple": "#BD5DBD",
+    "orange": "#FF9100"
     
 }
 

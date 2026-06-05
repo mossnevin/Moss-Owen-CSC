@@ -54,7 +54,7 @@ def inventory_page():
         if mode.get() == "search":
             add_hold_button.grid_remove()
             clear_inventory_button.grid_remove()
-            listbox.pack_forget()
+            listbox.pack_forget() 
             search_button.grid(row=2, column=3, padx=10, sticky="w")
             clear_search_button.grid(row=3, column=3, padx=10, sticky="w")
             search_results_box.pack()
@@ -90,6 +90,25 @@ def inventory_page():
         listbox.delete(0, tk.END)
         for hold in inventory:
             listbox.insert(tk.END, f"{hold['name']} | {hold['type']} | {hold['colour']} | {hold['size']}")
+        remove_button.config(state="disabled")  # deselect clears the button
+
+    def on_listbox_select(event):
+        if listbox.curselection():
+            remove_button.config(state="normal")
+            remove_button.grid(row=3, column=0, padx=10, sticky="e")
+        else:
+            remove_button.config(state="disabled")
+            
+
+    def remove_selected():
+        selected = listbox.curselection()
+        if not selected:
+            return
+        index = selected[0]
+        del inventory[index]
+        save_inventory(inventory)
+        update_inventory_list()
+        remove_button.grid_remove()
 
     def clear_inventory_entry():
         name_entry.delete(0, tk.END)
@@ -157,6 +176,11 @@ def inventory_page():
 
     listbox = tk.Listbox(content_frame, width=80)
     listbox.pack()
+    listbox.bind("<<ListboxSelect>>", on_listbox_select)
+
+    remove_button = tk.Button(input_frame, text="Remove", command=remove_selected, bg="red2", state="disabled")
+    
+    
 
     # SEARCH
     search_button = tk.Button(input_frame, text="Search", bg="green3", command=search_inventory)

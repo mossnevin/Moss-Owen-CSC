@@ -3,7 +3,6 @@ import os
 import json as js
 import math
 
-
 py.init()
 
 # ----------Set up the display-----------
@@ -14,7 +13,7 @@ screen = py.display.set_mode(
 )
 py.display.set_caption("Route Maker")
 
-#holds panel dimensions
+# Holds panel dimensions
 holds_panel_width = display_width
 holds_panel_height = 100
 
@@ -22,7 +21,7 @@ holds_panel_height = 100
 is_dragging = False
 SPACING_ON_HOLDS_PANEL = 80
 ROOM_FOR_BUTTONS = 200
-on_row = 1
+on_row = 0
 
 #---------Image loading---------
 try:
@@ -30,7 +29,7 @@ try:
     right_arrow = py.transform.scale(right_arrow, (50, 50))
     left_arrow = py.transform.flip(right_arrow, True, False)
 except py.error:
-    ("Failed to load image")
+    print("Failed to load image")
     
 
 # ---------Grid class-------------
@@ -55,7 +54,7 @@ class Grid:
         self.x = (self.width - self.gap * (self.size[0] - 1)) // 2
         self.y = (self.height - self.gap * (self.size[1] - 1)) // 2
 
-        # Add the postions of the grid cells to the grid list
+        # Add the positions of the grid cells to the grid list
         self.grid = []
         for w in range(self.size[0]):
             for h in range(self.size[1]):  
@@ -82,16 +81,37 @@ colour_properies = {
     "Yellow": "#ffff00",
     "Purple": "#BD5DBD",
     "Orange": "#FF9100"
-    
 }
-
-
-
-
 
 # --------------Main loop-------------- 
 run = True
 while run:
+    processed_holds_data = []
+    rows_visible = holds_panel_height // 70
+
+    usable_width = holds_panel_width - ROOM_FOR_BUTTONS
+    holds_per_row = usable_width // SPACING_ON_HOLDS_PANEL
+
+    if holds_per_row < 1:
+        holds_per_row = 1 
+
+
+    for i, hold in enumerate(holds_data):
+        row_index = i // holds_per_row
+        col_index = i % holds_per_row
+
+        processed_holds_data.append({
+            "size": size_properies[hold["size"]],
+            "colour": colour_properies[hold["colour"]],
+            "x": col_index * SPACING_ON_HOLDS_PANEL + 40,
+            "y": holds_panel_height // 2,
+            "row": row_index
+        })
+    
+    possible_rows = (processed_holds_data[-1]["row"] + 1) if processed_holds_data else 1
+    possible_rows = max(1, possible_rows)
+    
+
     # ----------Event handling-------------
     display_width, display_height = py.display.get_window_size()
     mouse_grab_area = py.Rect(0, display_height - holds_panel_height - 5, display_width, 10)
@@ -109,9 +129,9 @@ while run:
             if mouse_grab_area.collidepoint(py.mouse.get_pos()):
                 is_dragging = True
             elif l_arrow_rect.move(0,display_height - holds_panel_height).collidepoint(py.mouse.get_pos()):
-                on_row -= 1
+                on_row = (on_row - 1) % possible_rows
             elif r_arrow_rect.move(0,display_height - holds_panel_height).collidepoint(py.mouse.get_pos()):
-                on_row += 1
+                on_row = (on_row + 1) % possible_rows
         elif event.type == py.MOUSEBUTTONUP:
             is_dragging = False
 
@@ -122,8 +142,6 @@ while run:
     holds_panel_width = display_width
     holds_panel = py.Surface((holds_panel_width, holds_panel_height))
     holds_panel.fill(("#c8c8c8"))
-    
-    
 
     # Cursor feedback
     if mouse_grab_area.collidepoint(py.mouse.get_pos()):
@@ -144,47 +162,35 @@ while run:
     
     grid.update(display_width, display_height)
     
-    #Diplay holds on the panel
-    processed_holds_data = []
-    rows_visible = holds_panel_height // 70
-    
-    for i, hold in enumerate(holds_data):
-        processed_holds_data.append({
-        "size": size_properies[hold["size"]],
-        "colour": colour_properies[hold["colour"]],
-        "x": (i * SPACING_ON_HOLDS_PANEL + 40),
-        "y": holds_panel_height // 2,
-        "row": math.ceil((i * SPACING_ON_HOLDS_PANEL + 40) / (holds_panel_width - ROOM_FOR_BUTTONS)),
-    })
-    possible_rows = processed_holds_data[-1]["row"]
-    
+    # Display holds on the panel
     for hold in processed_holds_data:
-        if hold["row"] in range(on_row, rows_visible + on_row):
 
-            relative_x = hold["x"] - ((hold["row"] - 1) * (holds_panel_width - ROOM_FOR_BUTTONS))
-            y = (holds_panel_height // (rows_visible + 1)) * (hold["row"] - on_row +1)
+        slot = (hold["row"] - on_row) % possible_rows
+
+        if slot < rows_visible:
+
+            x = hold["x"]
+            y = (holds_panel_height // (rows_visible + 1)) * (slot + 1)
+            colour = hold["colour"]
+            size = hold["size"]
 
             py.draw.circle(
                 holds_panel, 
-                hold["colour"], 
-                (relative_x, y), 
-                hold["size"]
+                colour, 
+                (x, y), 
+                size
             )
 
     # Buttons
-    holds_panel.blit(right_arrow,r_arrow_rect)
+    holds_panel.blit(right_arrow, r_arrow_rect)
     holds_panel.blit(left_arrow, l_arrow_rect)
 
     # -----------Drawing for the main screen-------------
     screen.fill(("#ffffffff"))
 
-
     for cell in grid.grid:
         py.draw.circle(screen, ("#000000"), cell, 2)
 
-    
-
-    # ------------------------     
     # Update the display
     screen.blit(holds_panel, (0, display_height - holds_panel_height))
     py.display.flip()

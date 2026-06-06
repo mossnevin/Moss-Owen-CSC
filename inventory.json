@@ -1,134 +1,122 @@
 [
     {
-        "name": "1",
-        "type": "Jug",
-        "colour": "Blue",
-        "size": "Medium"
-    },
-    {
-        "name": "2",
-        "type": "Jug",
-        "colour": "Blue",
-        "size": "Medium"
-    },
-    {
-        "name": "3",
-        "type": "Jug",
+        "name": "af",
+        "type": "Sloper",
         "colour": "Green",
         "size": "Medium"
     },
     {
-        "name": "4",
-        "type": "Jug",
+        "name": "af",
+        "type": "Sloper",
         "colour": "Green",
         "size": "Medium"
     },
     {
-        "name": "5",
-        "type": "Jug",
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Green",
+        "size": "Medium"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Orange",
+        "size": "Tiny"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Orange",
+        "size": "Tiny"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Large"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Large"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Large"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Large"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Large"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Large"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
         "colour": "Yellow",
-        "size": "Medium"
+        "size": "Small"
     },
     {
-        "name": "6",
-        "type": "Jug",
+        "name": "af",
+        "type": "Sloper",
         "colour": "Yellow",
-        "size": "Medium"
+        "size": "Small"
     },
     {
-        "name": "7",
-        "type": "Jug",
-        "colour": "Purple",
-        "size": "Medium"
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Yellow",
+        "size": "Small"
     },
     {
-        "name": "8",
-        "type": "Jug",
-        "colour": "Purple",
-        "size": "Medium"
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Yellow",
+        "size": "Small"
     },
     {
-        "name": "9",
-        "type": "Jug",
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Yellow",
+        "size": "Small"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Yellow",
+        "size": "Small"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
         "colour": "Orange",
         "size": "Medium"
     },
     {
-        "name": "10",
-        "type": "Jug",
+        "name": "af",
+        "type": "Sloper",
         "colour": "Orange",
         "size": "Medium"
     },
     {
-        "name": "11",
-        "type": "Jug",
-        "colour": "Black",
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Orange",
         "size": "Medium"
-    },
-    {
-        "name": "12",
-        "type": "Jug",
-        "colour": "Black",
-        "size": "Medium"
-    },
-    {
-        "name": "13",
-        "type": "Jug",
-        "colour": "Red",
-        "size": "Medium"
-    },
-    {
-        "name": "14",
-        "type": "Jug",
-        "colour": "Red",
-        "size": "Large"
-    },
-    {
-        "name": "15",
-        "type": "Jug",
-        "colour": "Blue",
-        "size": "Large"
-    },
-    {
-        "name": "16",
-        "type": "Jug",
-        "colour": "Blue",
-        "size": "Large"
-    },
-    {
-        "name": "17",
-        "type": "Jug",
-        "colour": "Green",
-        "size": "Large"
-    },
-    {
-        "name": "18",
-        "type": "Jug",
-        "colour": "Green",
-        "size": "Large"
-    },
-    {
-        "name": "19",
-        "type": "Jug",
-        "colour": "Yellow",
-        "size": "Large"
-    },
-    {
-        "name": "20",
-        "type": "Jug",
-        "colour": "Yellow",
-        "size": "Large"
-    },
-    {
-        "name": "21",
-        "type": "Jug",
-        "colour": "Purple",
-        "size": "Large"
-    },
-    {
-        "name": "22",
-        "type": "Jug",
-        "colour": "Purple",
-        "size": "Large"
     }
 ]

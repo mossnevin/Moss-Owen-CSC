@@ -5,7 +5,7 @@ import math
 
 py.init()
 
-# ----------Set up the display-----------
+# ----------Set up the display-----------  Change
 display_width, display_height = 800, 600
 screen = py.display.set_mode(
     (display_width, display_height),
@@ -128,15 +128,25 @@ while run:
             # Only start dragging if the click originates in the grab area
             if mouse_grab_area.collidepoint(py.mouse.get_pos()):
                 is_dragging = True
+
+            # Check for arrow clicks
             elif l_arrow_rect.move(0,display_height - holds_panel_height).collidepoint(py.mouse.get_pos()):
                 on_row = (on_row - 1) % possible_rows
             elif r_arrow_rect.move(0,display_height - holds_panel_height).collidepoint(py.mouse.get_pos()):
                 on_row = (on_row + 1) % possible_rows
+
+            # Check for hold clicks
+            for hold in processed_holds_data
+                hold_rect = py.Rect(0, 0, hold["size"]*2, hold["size"]*2)
+                hold_rect.center = (hold["x"], hold["y"])
+                hold_rect.move_ip(0, display_height - holds_panel_height)
+                if hold_rect.collidepoint(py.mouse.get_pos()):
+                    print(f"Clicked on hold: {hold}")
+                    break
+
         elif event.type == py.MOUSEBUTTONUP:
             is_dragging = False
 
-    # Use dragging state for panel movement
-    mouse_down = is_dragging
 
     # -----------Panel-------------
     holds_panel_width = display_width
@@ -149,7 +159,7 @@ while run:
     else:
         py.mouse.set_cursor(py.SYSTEM_CURSOR_ARROW)
 
-    if mouse_down:
+    if is_dragging:
         new_mouse_y = py.mouse.get_pos()[1]
         new_height = display_height - new_mouse_y
         min_h = 70

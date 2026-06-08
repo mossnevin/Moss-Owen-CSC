@@ -63,8 +63,6 @@ class Grid:
 grid = Grid(0, 0, (25, 25))
 
 # --------------Holds dictionary and size, colour, and type variables-------------- 
-with open("inventory.json", "r") as f:
-    holds_data = js.load(f)
 
 size_properies = {
     "Tiny": 5,
@@ -75,7 +73,7 @@ size_properies = {
 
 colour_properies = {
     "Black": "#000000",
-    "Blue": "#0000ff",
+    "Blue": "#107cc4",
     "Red": "#ff0000",
     "Green": "#31b431",
     "Yellow": "#ffff00",
@@ -86,6 +84,10 @@ colour_properies = {
 # --------------Main loop-------------- 
 run = True
 while run:
+    with open("inventory.json", "r") as f:
+        holds_data = js.load(f)
+
+
     processed_holds_data = []
     rows_visible = holds_panel_height // 70
 
@@ -136,7 +138,7 @@ while run:
                 on_row = (on_row + 1) % possible_rows
 
             # Check for hold clicks
-            for hold in processed_holds_data
+            for hold in processed_holds_data:
                 hold_rect = py.Rect(0, 0, hold["size"]*2, hold["size"]*2)
                 hold_rect.center = (hold["x"], hold["y"])
                 hold_rect.move_ip(0, display_height - holds_panel_height)

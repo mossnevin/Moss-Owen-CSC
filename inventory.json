@@ -118,5 +118,17 @@
         "type": "Sloper",
         "colour": "Orange",
         "size": "Medium"
+    },
+    {
+        "name": "",
+        "type": "Jug",
+        "colour": "Yellow",
+        "size": "Medium"
+    },
+    {
+        "name": "dfg",
+        "type": "Pinch",
+        "colour": "Blue",
+        "size": "Large"
     }
 ]

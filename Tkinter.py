@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import json
 import os
+import sys
 import subprocess
 # import route_maker
 
@@ -204,7 +205,7 @@ def route_maker_page():
     title_label.config(text="Route Maker")
 
     def launch_route_maker():
-        subprocess.Popen(["python", "route_maker.py"])
+        subprocess.Popen([sys.executable, "route_maker.py"])
 
 
     button = tk.Button(content_frame, text="Launch Route Maker", command=launch_route_maker)

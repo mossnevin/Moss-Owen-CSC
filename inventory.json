@@ -1,8 +1,122 @@
 [
     {
-        "name": "",
-        "type": "Crimp",
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Green",
+        "size": "Medium"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Green",
+        "size": "Medium"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Green",
+        "size": "Medium"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Orange",
+        "size": "Tiny"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Orange",
+        "size": "Tiny"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Large"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Large"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Large"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Large"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Large"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Black",
+        "size": "Large"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
         "colour": "Yellow",
+        "size": "Small"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Yellow",
+        "size": "Small"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Yellow",
+        "size": "Small"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Yellow",
+        "size": "Small"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Yellow",
+        "size": "Small"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Yellow",
+        "size": "Small"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Orange",
+        "size": "Medium"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Orange",
+        "size": "Medium"
+    },
+    {
+        "name": "af",
+        "type": "Sloper",
+        "colour": "Orange",
         "size": "Medium"
     }
 ]

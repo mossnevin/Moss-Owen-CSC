@@ -136,7 +136,7 @@ while run:
                 on_row = (on_row + 1) % possible_rows
 
             # Check for hold clicks
-            for hold in processed_holds_data
+            for hold in processed_holds_data:
                 hold_rect = py.Rect(0, 0, hold["size"]*2, hold["size"]*2)
                 hold_rect.center = (hold["x"], hold["y"])
                 hold_rect.move_ip(0, display_height - holds_panel_height)

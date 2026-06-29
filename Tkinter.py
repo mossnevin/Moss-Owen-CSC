@@ -205,7 +205,7 @@ def route_maker_page():
     title_label.config(text="Route Maker")
 
     def launch_route_maker():
-        subprocess.Popen([sys.executable, "route_maker.py"])
+        subprocess.Popen([sys.executable, "Route_maker/route_maker.py"])
 
 
     button = tk.Button(content_frame, text="Launch Route Maker", command=launch_route_maker)

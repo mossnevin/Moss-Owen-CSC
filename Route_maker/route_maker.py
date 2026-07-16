@@ -446,6 +446,7 @@ while run:
                     if hold.rect.move(0, display_height - holds_menu_height).collidepoint(mouse_pos):
                         clicked_hold = hold
                         break
+
                 if clicked_hold:
                     drag_hold = DisplayedHold(
                         ProcessedHold(
@@ -458,7 +459,13 @@ while run:
                     )
                     drag_hold.y += (display_height - holds_menu_height)
                     drag_hold.update()
-                    
+                else:
+                    for hold in reversed(holds_on_grid):
+                        if hold.rect.collidepoint(mouse_pos):
+                            drag_hold = hold
+                            holds_on_grid.remove(hold)
+                            break
+
         elif event.type == pygame.MOUSEMOTION:
             if drag_hold:
                 if grid.x <= event.pos[0] <= grid.x + grid.gap * (grid.size[0] - 1) and grid.y <= event.pos[1] <= grid.y + grid.gap * (grid.size[1] - 1):

@@ -70,6 +70,8 @@ FILE_BROWSER_LIST_X_OFFSET = 20
 FILE_BROWSER_LIST_Y_OFFSET = 40
 FILE_BROWSER_ITEM_HEIGHT = 28
 FILE_BROWSER_MAX_VISIBLE_ITEMS = 10
+FILE_BROWSER_MAX_CHARACTER_INPUT = 30
+BLOCKED_CHARACTERS = ['\\', '/', ':', '*', '?', '"', '<', '>', '|']
 
 
 def get_file_browser_item_rects() -> list[pygame.Rect]: 
@@ -312,7 +314,7 @@ def regenerate_menu():
     usable_width = holds_menu_width - ROOM_FOR_BUTTONS
     holds_per_row = max(1, usable_width // SPACING_ON_HOLDS_menu)
 
-    rows_visible = max(1, holds_menu_height // 70) # How many vertical row should be visible
+    rows_visible = max(1, holds_menu_height // 80) # How many vertical row should be visible
 
     processed_holds_data: list[ProcessedHold] = []
 
@@ -447,7 +449,13 @@ while run:
                         file_browser_input = file_browser_input[:-1] # Removes the last character from the string
                     else:
                         # Saves character input
-                        if save_can_type and 32 <= ord(event.unicode) <= 126: # Keeps the ASCII between 32 and 126 (printable characters)
+                        if (
+                            save_can_type
+                            and len(event.unicode) > 0
+                            and 32 <= ord(event.unicode) <= 126 # Keeps the ASCII between 32 and 126 (printable characters)
+                            and len(file_browser_input) < FILE_BROWSER_MAX_CHARACTER_INPUT # Keeps the input under the maximum character limit
+                            and event.unicode not in BLOCKED_CHARACTERS # Prevents blocked characters
+                        ): 
                             file_browser_input += event.unicode
 
         # ---------Main event handling-------------
